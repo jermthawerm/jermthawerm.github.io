@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anchor Bay Beach - Seasonal Coastal Paradise</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            background: #0a0a0a;
+        }
+
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        .video-background::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            padding: 30px 20px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        .header-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 40px;
+        }
+
+        /* Logo */
+        .logo {
+            grid-column: 2;
+            text-align: center;
+        }
+
+        .logo img {
+            width: 280px;
+            height: auto;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-left {
+            justify-content: flex-end;
+        }
+
+        .nav-right {
+            justify-content: flex-start;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 5px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 18px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-radius: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        nav a.active {
+            background: rgba(255,215,0,0.3);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            position: relative;
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .page-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #ffd700;
+        }
+
+        .page-hero .subtitle {
+            font-size: 1.6rem;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .page-hero .intro {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+        }
+
+        /* Content Sections */
+        .content-section {
+            position: relative;
+            padding: 80px 20px;
+            color: white;
+        }
+
+        .content-section:nth-child(even) {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.9) 100%);
+        }
+
+        .content-section:nth-child(odd) {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.85) 100%);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            font-weight: 400;
+        }
+
+        .section-header .divider {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #ffd700, transparent);
+            margin: 0 auto;
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            margin-bottom: 40px;
+        }
+
+        .column-content {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .column-content p {
+            margin-bottom: 20px;
+        }
+
+        .column-content strong {
+            color: #ffd700;
+            font-size: 1.3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        /* Image Containers */
+        .image-container {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .image-caption {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: #ffd700;
+            font-style: italic;
+        }
+
+        /* Map section caption override for readability */
+        .map-section {
+    background: rgba(255,255,255,0.1);  /* Match other images */
+    backdrop-filter: blur(10px);
+    /* ... rest stays same */
+
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 35px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+
+        .feature-card .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Full Width Content */
+        .full-width-content {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .full-width-content p {
+            margin-bottom: 25px;
+        }
+
+        /* Map Section */
+        .map-section {
+            background: rgba(50,50,50,0.95);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .map-section img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .map-section .image-caption {
+            color: #ffd700;
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .comparison-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+
+        .comparison-card.summer {
+            border-color: rgba(255, 215, 0, 0.4);
+        }
+
+        .comparison-card.winter {
+            border-color: rgba(135, 206, 235, 0.4);
+        }
+
+        .comparison-card h3 {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .comparison-card.winter h3 {
+            color: #87CEEB;
+        }
+
+        .comparison-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* Image Gallery */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255,215,0,0.15) 0%, rgba(255,215,0,0.05) 100%);
+            border-left: 4px solid #ffd700;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 40px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .highlight-box p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.95) 100%);
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 30px;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 45px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 10px;
+        }
+
+        .btn-primary {
+            background: #ffd700;
+            color: #1a472a;
+        }
+
+        .btn-primary:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #1a472a;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .header-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .logo {
+                grid-column: 1;
+            }
+
+            .logo img {
+                width: 220px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-left,
+            .nav-right {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .two-column,
+            .comparison-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-hero .subtitle {
+                font-size: 1.3rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav a {
+                font-size: 14px;
+                padding: 10px 14px;
+            }
+
+            .content-section {
+                padding: 50px 15px;
+            }
+
+            .page-hero {
+                padding: 50px 15px;
+            }
+
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .map-section {
+                padding: 20px;
+            }
+
+            .btn {
+                display: block;
+                margin: 10px auto;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="beach.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <!-- Left Navigation -->
+            <nav class="nav-left">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rates.html">Rates & Info</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="beach.html" class="active">Beach</a></li>
+                </ul>
+            </nav>
+
+            <!-- Logo -->
+            <div class="logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="Anchor Bay Campground">
+                </a>
+            </div>
+
+            <!-- Right Navigation -->
+            <nav class="nav-right">
+                <ul>
+                    <li><a href="things-to-do.html">Things to Do</a></li>
+                    <li><a href="history.html">History</a></li>
+                    <li><a href="directions.html">Getting Here</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <h1>Anchor Bay Beach</h1>
+        <p class="subtitle">A Seasonal Wonder of the Northern California Coast</p>
+        <p class="intro">
+            Discover a half-mile stretch of pristine coastline where nature performs an incredible transformation 
+            between seasons. This is Fish Rock Beach—a hidden gem protected by the legendary "Banana Belt" microclimate.
+        </p>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="content-section">
+        <div class="section-container">
+            <div class="two-column">
+                <div class="column-content">
+                    <p>
+                        Anchor Bay Beach is a 1/2-mile-long seasonal beach. "Seasonal" in that the sand comes in and goes out 
+                        according to seasonal weather patterns. Its true placename is Fish Rock Beach, named for the bygone 
+                        town of Fish Rock that disappeared in the 1920's, but strangely, still appears on many maps.
+                    </p>
+                    <p>
+                        The popular local name of Anchor Bay comes from the tiny resort village perched on the terrace just 
+                        above it. This unique beach offers a rare glimpse into the powerful seasonal forces that shape California's 
+                        dramatic coastline.
+                    </p>
+                </div>
+                <div class="map-section">
+                    <img src="https://www.abcamp.com/wp-content/uploads/2015/02/havenmap.gif" alt="Anchor Bay Map">
+                    <p class="image-caption">Haven's Anchorage & Surrounding Area</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fair Weather Section -->
+    <section class="content-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>During Fair Weather</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="highlight-box">
+                <p>
+                    <strong>The Banana Belt Phenomenon:</strong> New visitors to Anchor Bay often notice that, from here, 
+                    the sun does not set over the ocean. The whole coast from Point Arena to Bodega Bay faces toward the 
+                    southwest, but Anchor Bay is like a big bite out of the coast and faces even farther around to the south.
+                </p>
+            </div>
+
+            <div class="two-column">
+                <div class="column-content">
+                    <p>
+                        Anchor Bay is protected from the nearly relentless winds that blow out of the northwest. It's not 
+                        unusual to look out and see solid whitecaps and giant swells moving on down the coast, passing us by.
+                    </p>
+                    <p>
+                        Anchor Bay, then known as Fish Rock Landing, was one of the coast's "dogholes" where schooners were 
+                        loaded with tan bark and railroad ties from a chute on the west point from the 1870's-1890's. Our 
+                        protected waters have continued to be a haven for today's commercial fishermen far away from their 
+                        home ports. They still find nightly refuge from rough seas while working salmon, rockfish, and urchins 
+                        off our coast. <strong>There have been as many as 175 boats anchored at one time.</strong>
+                    </p>
+                </div>
+                <div class="image-container">
+                    <img src="https://www.abcamp.com/wp-content/uploads/2015/02/covewide.jpg" alt="Calm Beach Waters">
+                    <p class="image-caption">Peaceful summer waters at Anchor Bay</p>
+                </div>
+            </div>
+
+            <div class="full-width-content">
+                <p>
+                    The combination of the coastal shape and the direction of the wind causes a climatic blessing called the 
+                    <strong>Banana Belt</strong>, a nearly fogless micro-climate involving about five miles of coastline with 
+                    Anchor Bay set in the middle like a diamond in a golden ring. While the wind blows onshore for the rest of 
+                    the coast it is practically offshore here, keeping the fog from drifting in.
+                </p>
+                <p>
+                    North and south of us, summertime motorists are winding along Highway One through the dripping gray, trying 
+                    to pierce the fog with their headlights, while we bask under clear blue skies.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave Dynamics Section -->
+    <section class="content-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>The Science of Our Gentle Waves</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="full-width-content">
+                <p>
+                    The fair-weather ocean swells of spring, summer, and fall approach the California coast from the northwest, 
+                    having been generated hundreds of miles away in north-Pacific storm cells. Our prevailing winds, also out of 
+                    the northwest, help to push them along and encourage them into good size.
+                </p>
+                <p>
+                    They break directly onto west-facing beaches such as at Manchester Beach and Gualala Point with all the energy 
+                    stored in them. While Anchor Bay is spared the direct impacts, the swells do manage to wrap around shallows 
+                    and points of land and work their way into the bay, but not without going through a maze of softening effects.
+                </p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon">🏝️</div>
+                    <h3>Natural Barriers</h3>
+                    <p>Haven's Neck peninsula and Fish Rocks islands block the direct approach of powerful swells</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🌊</div>
+                    <h3>Energy Dissipation</h3>
+                    <p>Waves lose energy as they stretch around corners and navigate shallow waters</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🌿</div>
+                    <h3>Kelp Forest Protection</h3>
+                    <p>Dense kelp beds absorb additional wave energy before reaching shore</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <p>
+                    After being broken up, spread thin, and drained of power, the swells are a fraction of their former potential. 
+                    <strong>They may be breaking 10 feet high on Gualala's beach but only 1 or 2 feet high here.</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- White Sand Beach Section -->
+    <section class="content-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>The Perfect Sand Trap</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="two-column">
+                <div class="image-container">
+                    <img src="https://www.abcamp.com/wp-content/uploads/2015/02/quinview.jpg" alt="Quinliven Rock">
+                    <p class="image-caption">Quinliven Rock at the east end</p>
+                </div>
+                <div class="column-content">
+                    <p>
+                        Anchor Bay's most attractive feature is its white sand beach. While most of the north coast is dominated 
+                        by high cliffs with boulder and cobblestone beaches at their feet, sand collects in pockets like river 
+                        and creek mouths and in coves whose shapes persuade currents to deposit rather than to sweep clean.
+                    </p>
+                    <p>
+                        <strong>Anchor Bay is a perfect sand trap.</strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="full-width-content">
+                <p>
+                    When the swells are far apart, as happens during fair-weather, there is a shoreward movement of sand as it 
+                    is constantly, gently lapped in the one direction. Close to shore, the lightweight grains are suspended in 
+                    breaking waves and carried up the beach. The grains fall out of suspension by gravity and join the bottom.
+                </p>
+                <p>
+                    Later, during low tide, the drying sand loses its adhesion, and the grains are picked up by gusts of wind 
+                    and moved further up the beach. In this way, the beach builds up day by day, week by week, month by month.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Storm Transformation Section -->
+    <section class="content-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>When Nature Rages</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="comparison-section">
+                <div class="comparison-card summer">
+                    <h3>☀️ Summer Serenity</h3>
+                    <p>
+                        Protected from northwest winds, gentle 1-2 foot waves lap at white sandy shores. The beach builds 
+                        gradually over months as sand is deposited grain by grain, creating a pristine coastal paradise.
+                    </p>
+                    <p>
+                        Commercial fishing boats find safe haven in the calm waters. Families enjoy the rare fog-free skies 
+                        of the Banana Belt microclimate.
+                    </p>
+                </div>
+                <div class="comparison-card winter">
+                    <h3>⛈️ Winter Fury</h3>
+                    <p>
+                        During storms, the protection is lost. Wind and waves shift to come from the south and southeast with 
+                        nothing to block their approach. Anchor Bay faces the full force of the open sea.
+                    </p>
+                    <p>
+                        Waves begin breaking 100 yards out, forming lines of surf that sweep shoreward in a deafening rumble. 
+                        When high tides and storm winds combine, waves sweep across the entire beach to the cliff bottoms.
+                    </p>
+                </div>
+            </div>
+
+            <div class="two-column">
+                <div class="column-content">
+                    <p>
+                        <strong>Spectacular changes occur when nature rages:</strong>
+                    </p>
+                    <p>
+                        Summer's trickling creeks become voracious torrents that gouge out tons of sand. Rafts of driftwood 
+                        trees and stumps are piled like kindling. Whole kelp beds are ripped from their reefs and cast ashore 
+                        with some kelp holdfasts still clinging to chunks of rock.
+                    </p>
+                    <p>
+                        The agitation is so great, tons of suspended sand have no place to settle except in the deeper water 
+                        beyond the reach of the boiling breakers. <strong>The white sandy beach that took months to build up 
+                        can be removed in a single storm.</strong>
+                    </p>
+                </div>
+                <div class="image-container">
+                    <img src="storm_damage_square.jpg" alt="Winter Storm">
+                    <p class="image-caption">Winter storms transform the bay</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Winter Beach Section -->
+    <section class="content-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>The Hidden Beach Revealed</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="two-column">
+                <div class="image-container">
+                    <img src="newsandout_square.jpg" alt="Winter Beach">
+                    <p class="image-caption">Exposed rock formations after the sand departs</p>
+                </div>
+                <div class="column-content">
+                    <p>
+                        After the sand is gone, Anchor Bay's winter beach takes on the appearance of the rest of the exposed-coast 
+                        shingle beaches. Now huge rock outcroppings dominate large sections of beach, some towering several feet 
+                        above your head—rocks that lay hidden beneath the summer sand.
+                    </p>
+                    <p>
+                        Boulders, cobblestones, and pebbles lie in sorted arrangements around log and seaweed sculptures. A few 
+                        places are clean down to the bedrock whose surface has been ground to an amazing smoothness.
+                    </p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <p>
+                    This smoothness is evidence that the removal of the sand was but a single pass of Nature's polish cloth, 
+                    and that a million such passes have occurred. It stands as the guarantee that the sand will return in season, 
+                    just as assuredly as the sun will rise each day.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="section-container">
+            <h2>Experience This Natural Wonder</h2>
+            <p>
+                Camp steps from this incredible beach and witness the seasonal transformation yourself. 
+                Whether you visit during the gentle summer months or the dramatic winter storms, 
+                Anchor Bay offers an unforgettable coastal experience.
+            </p>
+            <div>
+                <a href="tel:7078844222" class="btn btn-primary">Book Your Stay</a>
+                <a href="rates.html" class="btn btn-secondary">View Rates</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
