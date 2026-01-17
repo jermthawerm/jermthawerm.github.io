@@ -119,20 +119,29 @@
             background: rgba(255,215,0,0.3);
         }
 
-        /* Page Content */
-        .page-content {
+        /* Map Section */
+        .map-section {
             position: relative;
-            min-height: calc(100vh - 200px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px 20px;
-            color: white;
+            background: rgba(0,0,0,0.8);
         }
 
-        .page-content h1 {
+        .map-section iframe {
+            display: block;
+            width: 100%;
+            height: 300px;
+            border: 0;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            position: relative;
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .page-hero h1 {
             font-size: 4rem;
             margin-bottom: 20px;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
@@ -141,10 +150,87 @@
             color: #ffd700;
         }
 
-        .page-content p {
-            font-size: 1.5rem;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-            font-weight: 300;
+        /* Content Section */
+        .content-section {
+            position: relative;
+            padding: 60px 20px;
+            color: white;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.9) 100%);
+        }
+
+        .section-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .directions-content {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .directions-content p {
+            margin-bottom: 20px;
+        }
+
+        .warning-box {
+            background: rgba(255, 100, 100, 0.15);
+            border-left: 4px solid #ff6b6b;
+            padding: 25px 30px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .warning-box h3 {
+            color: #ff6b6b;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .warning-box p {
+            margin-bottom: 15px;
+        }
+
+        .warning-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .directions-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .directions-card h2 {
+            font-size: 1.8rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            font-weight: 400;
+        }
+
+        .directions-content a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .directions-content a:hover {
+            text-decoration: underline;
+        }
+
+        .road-conditions {
+            background: rgba(255,215,0,0.1);
+            border-left: 4px solid #ffd700;
+            padding: 20px 25px;
+            margin-top: 40px;
+            border-radius: 5px;
+        }
+
+        .road-conditions p {
+            margin-bottom: 0;
         }
 
         /* Footer */
@@ -201,12 +287,16 @@
                 padding: 10px 14px;
             }
 
-            .page-content h1 {
+            .page-hero h1 {
                 font-size: 2.5rem;
             }
 
-            .page-content p {
-                font-size: 1.2rem;
+            .directions-card {
+                padding: 25px;
+            }
+
+            .directions-card h2 {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -252,10 +342,50 @@
         </div>
     </header>
 
-    <!-- Page Content -->
-    <section class="page-content">
-        <h1>Getting Here</h1>
-        <p>Content coming soon...</p>
+    <!-- Map Section -->
+    <section class="map-section">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3109.230870519665!2d-123.57946199999998!3d38.80426299999999!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80813b03f226e319%3A0x88f5727839abe820!2sAnchor+Bay+Campgrounds!5e0!3m2!1sen!2sus!4v1427689044962" allowfullscreen></iframe>
+    </section>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <h1>Directions to Anchor Bay Campground</h1>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="section-container">
+            <div class="directions-content">
+
+                <div class="warning-box">
+                    <h3>Warning!</h3>
+                    <p>Some internet mapping sources show Fish Rock Road as being the best way to get here. Sorry, this is wrong! Fish Rock Road is 28 miles of narrow winding dirt road that takes over an hour to drive in a car. <strong>This road is not recommended for trailers or motor homes.</strong></p>
+                    <p>Bad weather can create traffic issues on the coast (mud slides, downed trees, etc.). Please check road conditions prior to heading out to Anchor Bay Campground. If a road is not passable, a GPS (or digital map app) may send you to Mountain View Road. Please reconsider! This narrow road often has issues and can create a very stressful drive.</p>
+                    <p><strong>Alternative routes if Highway 1 is blocked:</strong></p>
+                    <p><strong>Route A:</strong> From Santa Rosa, take Highway 101 to River Road to Guerneville, continuing on Highway 116, then exit to Jenner on Highway 1. Head North to Anchor Bay.</p>
+                    <p><strong>Route B:</strong> Take Highway 101 to Highway 128 to Boonville, continue to Highway 1, and then head South to Anchor Bay.</p>
+                </div>
+
+                <p style="text-align: center; font-size: 1.3rem; margin: 40px 0;"><em>The instructions below describe the best way to get here</em></p>
+
+                <div class="directions-card">
+                    <h2>From San Francisco</h2>
+                    <p>Drive north on Highway 101 to the Washington Street exit at Petaluma. Turn left and head west. This street will change names to Bodega Avenue, Valley Ford Road, and eventually merge to become Highway One. Continue westward to Bodega Bay following Highway One as it turns northward along the coast. Anchor Bay is 4 miles north of Gualala. Look for our big sign on Highway One.</p>
+                    <p>Expect a lot of winding roads, but there still is no better or faster or more beautiful route. It takes about 2 3/4 hours by car from the Golden Gate Bridge to Anchor Bay. Add time for RVs, scenery, and lunch.</p>
+                </div>
+
+                <div class="directions-card">
+                    <h2>From Sacramento</h2>
+                    <p>Drive west on Interstate 80 to the Highway 37 exit to Vallejo. Stay on 37 through Vallejo to the stoplight at Lakeville Road (about 15 miles). Turn right and drive into Petaluma to make a left onto Washington Street and head west through town. This street will change names to Bodega Avenue, Valley Ford Road, and eventually merge to become Highway One. Continue westward to Bodega Bay following Highway One as it turns northward along the coast. Anchor Bay is 4 miles north of Gualala. Look for our big sign on Highway One.</p>
+                    <p>Expect a lot of winding roads, but there still is no better or faster or more beautiful route. It takes about 4 hours by car from Sacramento to Anchor Bay. Add time for RVs, scenery, and lunch.</p>
+                </div>
+
+                <div class="road-conditions">
+                    <p><strong>Check Road Conditions:</strong> <a href="https://quickmap.dot.ca.gov/" target="_blank">Caltrans QuickMap</a></p>
+                </div>
+
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->

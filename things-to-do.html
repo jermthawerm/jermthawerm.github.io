@@ -119,20 +119,16 @@
             background: rgba(255,215,0,0.3);
         }
 
-        /* Page Content */
-        .page-content {
+        /* Page Hero */
+        .page-hero {
             position: relative;
-            min-height: calc(100vh - 200px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            padding: 80px 20px;
             text-align: center;
-            padding: 40px 20px;
             color: white;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
         }
 
-        .page-content h1 {
+        .page-hero h1 {
             font-size: 4rem;
             margin-bottom: 20px;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
@@ -141,10 +137,66 @@
             color: #ffd700;
         }
 
-        .page-content p {
-            font-size: 1.5rem;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-            font-weight: 300;
+        /* Content Sections */
+        .content-section {
+            position: relative;
+            padding: 60px 20px;
+            color: white;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.9) 100%);
+        }
+
+        .section-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .activity-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .activity-card h2 {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            font-weight: 400;
+        }
+
+        .activity-card p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            margin-bottom: 15px;
+        }
+
+        .activity-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .activity-card strong {
+            color: #ffd700;
+        }
+
+        .activity-card a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .activity-card a:hover {
+            text-decoration: underline;
+        }
+
+        .warning-box {
+            background: rgba(255,215,0,0.15);
+            border-left: 4px solid #ffd700;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-top: 15px;
         }
 
         /* Footer */
@@ -201,12 +253,16 @@
                 padding: 10px 14px;
             }
 
-            .page-content h1 {
+            .page-hero h1 {
                 font-size: 2.5rem;
             }
 
-            .page-content p {
-                font-size: 1.2rem;
+            .activity-card {
+                padding: 25px;
+            }
+
+            .activity-card h2 {
+                font-size: 1.6rem;
             }
         }
     </style>
@@ -252,10 +308,52 @@
         </div>
     </header>
 
-    <!-- Page Content -->
-    <section class="page-content">
-        <h1>Things to Do</h1>
-        <p>Content coming soon...</p>
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <h1>What to Do at Anchor Bay Campground</h1>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="section-container">
+
+            <!-- Sport Diving -->
+            <div class="activity-card">
+                <h2>Sport Diving</h2>
+                <p>North coast waters average 10 to 15 feet visibility in the spring and summer, but visibility improves in the fall. While SCUBA-clad sightseers and spear fishers are common enough, the snorkelers dominate. Abalone has been the most popular target in this fishery. However, Abalone season has been closed indefinitely.</p>
+                <p>Regulations are strictly enforced; penalties can be severe. <strong>Know before you go!</strong> Please refer to regulations by the California Fish and Wildlife department for details.</p>
+                <p>Equipment rentals and air fills may be available 4 miles south in Gualala at JR's Home and Auto Center (call to confirm availability at <a href="tel:7078843534">707-884-3534</a>).</p>
+                <p>For ocean conditions from Salt Point State Park, call <a href="tel:7078473222">(707) 847-3222</a>. Please note, this is a recorded message.</p>
+            </div>
+
+            <!-- Fishing -->
+            <div class="activity-card">
+                <h2>Fishing</h2>
+                <p>For the boat fisher, your aluminum boat up to 17 feet, or inflatable is launchable with a little know-how. The launching area in Chicken Cove is a quarter mile from the beach entrance so it is necessary to have launch wheels attached or you can use the camp's launch cart. Launching ends when the sand goes out. Anchor Bay staff can provide boat shuttles to the cove, subject to scheduling and beach conditions. For the shore fisher, just walk out any old time and start fishing.</p>
+                <p>Anchor Bay is also great for crabbing during crab season.</p>
+                <p>There are some freshwater fishing possibilities during winter runs of steelhead on the Gualala River.</p>
+                <p>Tackle and information on local conditions are available in Gualala at Gualala Sport and Tackle <a href="tel:7078844247">(707) 884-4247</a> and at JR's Home and Auto Center <a href="tel:7078843534">(707) 884-3534</a>. Please refer to regulations by the California Fish and Wildlife department for details.</p>
+            </div>
+
+            <!-- Sea Kayaking -->
+            <div class="activity-card">
+                <h2>Sea Kayaking</h2>
+                <p>More folks are discovering a more intimate connection with the hidden magic of this rugged coastline. Anchor Bay's ocean-level access makes kayaking accessible for all levels of experience. For launching, we recommend Chicken Cove, a 1/4 mile up the beach. The 3/4-mile paddle out to Fish Rocks Island is a world class experience.</p>
+            </div>
+
+            <!-- Beach Activities -->
+            <div class="activity-card">
+                <h2>Beach Activities</h2>
+                <p>Tide pooling, sandcastle building, sunbathing, surfing, boogie boarding, skim boarding, jogging, or doing nothing at all. For the kids, the water is cold but safe with proper supervision. A wet suit can provide warmth during extended periods of time in the water. At times a small lagoon/pond forms where our creek meets the beach. This is a favorite spot for younger kids. There is no lifeguard on duty.</p>
+            </div>
+
+            <!-- Whale Watching -->
+            <div class="activity-card">
+                <h2>Whale Watching</h2>
+                <p>The annual California Grey Whale migration between Baja California and the Bering and Chukchi Seas brings all 20,000 migrating whales right past us. The first southbound whales are usually spotted here in late November, and sightings continue throughout the winter. However, they tend to stay farther offshore during this leg and are more difficult to spot. During the northbound leg, beginning in early spring, they tend to hug the coast more closely. Late in the migration, the cows with their new calves will often come right inside the bay. The best times for sightings are late March to early May.</p>
+            </div>
+
+        </div>
     </section>
 
     <!-- Footer -->
