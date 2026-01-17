@@ -119,20 +119,29 @@
             background: rgba(255,215,0,0.3);
         }
 
-        /* Page Content */
-        .page-content {
+        /* Map Section */
+        .map-section {
             position: relative;
-            min-height: calc(100vh - 200px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px 20px;
-            color: white;
+            background: rgba(0,0,0,0.8);
         }
 
-        .page-content h1 {
+        .map-section iframe {
+            display: block;
+            width: 100%;
+            height: 300px;
+            border: 0;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            position: relative;
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .page-hero h1 {
             font-size: 4rem;
             margin-bottom: 20px;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
@@ -141,10 +150,102 @@
             color: #ffd700;
         }
 
-        .page-content p {
-            font-size: 1.5rem;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-            font-weight: 300;
+        /* Content Section */
+        .content-section {
+            position: relative;
+            padding: 60px 20px;
+            color: white;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.9) 100%);
+        }
+
+        .section-container {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 50px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .contact-card h2 {
+            font-size: 1.8rem;
+            color: #ffd700;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .contact-info {
+            font-size: 1.2rem;
+            line-height: 2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        .contact-info a {
+            color: #ffd700;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .phone-number {
+            font-size: 2rem;
+            color: #ffd700;
+            margin: 30px 0;
+            font-weight: 500;
+        }
+
+        .phone-number a {
+            color: #ffd700;
+        }
+
+        .social-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 35px;
+            background: #1877f2;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #166fe5;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .reservation-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 35px;
+            background: #ffd700;
+            color: #1a472a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .reservation-link:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
         /* Footer */
@@ -201,12 +302,16 @@
                 padding: 10px 14px;
             }
 
-            .page-content h1 {
+            .page-hero h1 {
                 font-size: 2.5rem;
             }
 
-            .page-content p {
-                font-size: 1.2rem;
+            .contact-card {
+                padding: 30px 20px;
+            }
+
+            .phone-number {
+                font-size: 1.6rem;
             }
         }
     </style>
@@ -252,10 +357,36 @@
         </div>
     </header>
 
-    <!-- Page Content -->
-    <section class="page-content">
-        <h1>Contact</h1>
-        <p>Content coming soon...</p>
+    <!-- Map Section -->
+    <section class="map-section">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3109.230870519665!2d-123.57946199999998!3d38.80426299999999!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80813b03f226e319%3A0x88f5727839abe820!2sAnchor+Bay+Campgrounds!5e0!3m2!1sen!2sus!4v1426565787898" allowfullscreen></iframe>
+    </section>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <h1>Contact Anchor Bay</h1>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="section-container">
+            <div class="contact-card">
+                <h2>Anchor Bay Campground LLC</h2>
+                <div class="contact-info">
+                    <p>PO Box 1529</p>
+                    <p>Gualala, California 95445</p>
+                </div>
+                <div class="phone-number">
+                    <a href="tel:7078844222">(707) 884-4222</a>
+                </div>
+                <div>
+                    <a href="https://www.facebook.com/profile.php?id=61565999814034" class="social-link" target="_blank">Follow us on Facebook</a>
+                </div>
+                <div>
+                    <a href="rates.html" class="reservation-link">Learn About Reservations</a>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
